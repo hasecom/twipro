@@ -1,5 +1,5 @@
 <template>
-<div id='player' class='border d-inline'>A</div>
+<div id='player' class='border d-inline'>Al</div>
 </template>
 
 <script>
@@ -14,8 +14,8 @@ export default {
     position: fixed;
     width:30px;
     height:30px;
-    left: 50%;
+    left: 42%;
     z-index: 1;
-    background:red;
+    background:blue;
 }
 </style>
