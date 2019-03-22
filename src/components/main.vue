@@ -23,13 +23,15 @@ export default {
         }
     },
     mounted() {
-
+        
     },
     methods: {
 
     }
 
 }
+
+
 </script>
 
 <style scoped>
