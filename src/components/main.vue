@@ -11,7 +11,7 @@
                 </div>
             </div>
         </div>
-        <Control v-on:stage_reload="stage_load()" />
+        <Control v-on:stage_reload="reload_call" />
     </div>
 </div>
 </template>
@@ -21,11 +21,16 @@ import * as mainjs from '../assets/js/index.js';
 import * as stagejs from '../assets/js/stage.js';
 import Chara from './character.vue';
 import Control from './controller.vue';
+import {
+    log
+} from 'util';
 
 export default {
     name: 'game',
     data() {
-        return {}
+        return {
+
+        }
     },
     components: {
         Chara,
@@ -35,9 +40,20 @@ export default {
         this.load_call();
     },
     methods: {
+        //初期ロード
         load_call() {
             this.dedication_id();
             this.stage_load();
+        },
+        //移動時ロード
+        reload_call(direction) {
+            //一つ前のgroundのクラスをremove
+            this.remove_class(stagejs.read('ground'));
+            //方向判定
+            stagejs.move(direction);
+            //stage再描画(class付与)
+            this.stage_load();
+
         },
         dedication_id() {
             //各フィールドにid付与
@@ -51,6 +67,11 @@ export default {
             let stage_load_arr = stagejs.read('ground');
             for (let j = 0; j < stage_load_arr.length; j++) {
                 document.getElementById('ground_child_' + j).classList.add(stagejs.STAGE_DISPLAY[stage_load_arr[j]]);
+            }
+        },
+        remove_class(stage_temp_arr) {
+            for (let k = 0; k < stage_temp_arr.length; k++) {
+                document.getElementById('ground_child_' + k).classList.remove(stagejs.STAGE_DISPLAY[stage_temp_arr[k]]);
             }
         }
     }

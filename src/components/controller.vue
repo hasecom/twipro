@@ -18,17 +18,16 @@ export default {
     name: 'control',
     methods: {
         top_click() {
-            stagejs.top_move();
-            this.$emit('stage_reload');
+            this.$emit('stage_reload','top');
         },
         left_click() {
-            console.log("left")
+            this.$emit('stage_reload','left');
         },
         right_click() {
-            console.log("right")
+            this.$emit('stage_reload','right');
         },
         bottom_click() {
-            console.log("bottom")
+            this.$emit('stage_reload','bottom');
         }
     }
 }
@@ -42,34 +41,34 @@ export default {
 #controllers {
     text-align: center;
     background: white;
-    width: 140px;
-    height: 140px;
+    width: 120px;
+    height: 120px;
     margin: 0 auto;
     /* clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); */
     transform: rotate(45deg);
 }
 
 #control_top {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     background: blue;
 }
 
 #control_right {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     background: red;
 }
 
 #control_left {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height: 60px;
     background: yellow;
 }
 
 #control_bottom {
-    width: 70px;
-    height: 70px;
+    width: 60px;
+    height:60px;
     background: green;
 }
 </style>

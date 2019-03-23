@@ -5,17 +5,16 @@
 <script>
 export default {
     name: 'character',
-
 }
 </script>
 
 <style scoped>
 #player {
     position: fixed;
-    width:30px;
-    height:30px;
+    width: 30px;
+    height: 30px;
     left: 42%;
     z-index: 1;
-    background:blue;
+    background: blue;
 }
 </style>
