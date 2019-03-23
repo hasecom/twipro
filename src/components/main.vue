@@ -10,8 +10,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
+        <Control v-on:stage_reload="stage_load()" />
     </div>
 </div>
 </template>
@@ -20,22 +20,25 @@
 import * as mainjs from '../assets/js/index.js';
 import * as stagejs from '../assets/js/stage.js';
 import Chara from './character.vue';
+import Control from './controller.vue';
 
 export default {
     name: 'game',
     data() {
-        return {
-
-        }
+        return {}
     },
     components: {
-        Chara
+        Chara,
+        Control
     },
     mounted() {
-        this.dedication_id();
-        this.stage_load();
+        this.load_call();
     },
     methods: {
+        load_call() {
+            this.dedication_id();
+            this.stage_load();
+        },
         dedication_id() {
             //各フィールドにid付与
             let dedication_element = document.getElementsByClassName('ground_child');
@@ -44,12 +47,11 @@ export default {
             }
         },
         stage_load() {
-            //ステージ初期ロード
+            //ステージロード
             let stage_load_arr = stagejs.read('ground');
             for (let j = 0; j < stage_load_arr.length; j++) {
-                    document.getElementById('ground_child_' + j).classList.add(stagejs.STAGE_DISPLAY[stage_load_arr[j]]);
+                document.getElementById('ground_child_' + j).classList.add(stagejs.STAGE_DISPLAY[stage_load_arr[j]]);
             }
-
         }
     }
 
@@ -93,6 +95,7 @@ export default {
     background: url('../assets/img/field/field1.png') no-repeat center center;
     object-fit: cover;
 }
+
 .yama1 {
     background: url('../assets/img/field/yama1.png') no-repeat center center;
     object-fit: cover;
