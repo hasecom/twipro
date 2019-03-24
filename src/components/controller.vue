@@ -1,12 +1,12 @@
 <template>
 <div id='controllers'>
     <div class="row">
-        <div id='control_top' class='col-6' @click='top_click()'>a</div>
-        <div id='control_right' class='col-6' @click='right_click()'>a</div>
+        <div id='control_top' class='col-6 control_btn border' @click='top_click()'><div class='control_kn'><i class="fas fa-arrow-up"></i></div></div>
+        <div id='control_right' class='col-6 control_btn border' @click='right_click()'><div class='control_kn'><i class="fas fa-arrow-right"></i></div></div>
     </div>
     <div class="row">
-        <div id='control_left' class='col-6' @click='left_click()'>a</div>
-        <div id='control_bottom' class='col-6' @click='bottom_click()'>a</div>
+        <div id='control_left' class='col-6 control_btn border' @click='left_click()'><div class='control_kn'><i class="fas fa-arrow-left"></i></div></div>
+        <div id='control_bottom' class='col-6 control_btn border' @click='bottom_click()'><div class='control_kn'><i class="fas fa-arrow-down"></i></div></div>
     </div>
 </div>
 </template>
@@ -18,16 +18,16 @@ export default {
     name: 'control',
     methods: {
         top_click() {
-            this.$emit('stage_reload','top');
+            this.$emit('stage_reload',0,-1,'top');
         },
         left_click() {
-            this.$emit('stage_reload','left');
+            this.$emit('stage_reload',-1,0,'left');
         },
         right_click() {
-            this.$emit('stage_reload','right');
+            this.$emit('stage_reload',1,0,'right');
         },
         bottom_click() {
-            this.$emit('stage_reload','bottom');
+            this.$emit('stage_reload',0,1,'bottom');
         }
     }
 }
@@ -40,7 +40,6 @@ export default {
 
 #controllers {
     text-align: center;
-    background: white;
     width: 120px;
     height: 120px;
     margin: 0 auto;
@@ -51,24 +50,35 @@ export default {
 #control_top {
     width: 60px;
     height: 60px;
-    background: blue;
 }
 
 #control_right {
     width: 60px;
     height: 60px;
-    background: red;
 }
 
 #control_left {
     width: 60px;
     height: 60px;
-    background: yellow;
 }
 
 #control_bottom {
     width: 60px;
     height:60px;
-    background: green;
+}
+.control_btn{
+    border-radius: 50%;
+}
+.control_kn{
+   color:white; 
+   transform:rotate(-45deg);
+   margin:0 auto;
+   top:10;
+   right:0;
+   left:0;
+   bottom:0;
+   padding-top:5px;
+   padding-right:5px;
+   font-size:30px;
 }
 </style>
