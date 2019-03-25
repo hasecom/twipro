@@ -38,21 +38,34 @@ export default {
     Control
   },
   mounted() {
-    this.load_call();
+    let mounted_stage = 'STAGE_ground';
+    this.load_call(mounted_stage,0,0);
   },
   methods: {
     //初期ロード
-    load_call() {
+    load_call(mounted_stage,col,row) {
+      stagejs.reset_stage();
+      this.remove_class(this.temp_arr);
+      this.temp_arr = [];
       this.dedication_id();
+      this.col = col;
+      this.row = row;
       //stage_loadの引数 スタート地点col,row,stage
-      this.stage_load(this.col,this.row, "ground");
+      this.stage_load(this.col,this.row,mounted_stage);
       this.temp_arr = stagejs.display_temp_stage;
-      this.stage = 'ground';
+      this.stage = mounted_stage;
     },
     //移動時ロード direction->方向
     reload_call(col,row,direction) {
     //当たり判定
-    if(stagejs.judge_hit(this.temp_arr,col,row,this.col,this.row)!=false)return false;
+    let hit_return = stagejs.judge_hit(this.temp_arr,col,row);
+    if( hit_return ==1)return false;
+    //ステージ移動
+    if( hit_return !=0){
+        //NEXTステージ名,col,row
+        this.load_call(hit_return[0],hit_return[1],hit_return[2]); 
+        return false;
+        }
     
     this.col = this.col + col;
     this.row = this.row + row;
@@ -71,7 +84,7 @@ export default {
     stage_load(col, row, stage_name) {
       //ステージロード
       let stage_load_arr = stagejs.display_stage_reflect(col, row, stage_name);
-      
+ 
       for (let j = 0; j < stage_load_arr.length; j++) {
         document.getElementById("ground_child_" + j).classList.add(stagejs.STAGE_DISPLAY[stage_load_arr[j]]);
       }

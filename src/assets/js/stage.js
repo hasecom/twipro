@@ -1,6 +1,6 @@
 
 //stage
-let ground = [
+let STAGE_ground = [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,//0~11
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
@@ -8,7 +8,7 @@ let ground = [
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
-    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 101,
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
@@ -30,6 +30,7 @@ let display_stage = {
     10: [],
     11: [],
 };
+
 //表示されている今の画面
 export let display_temp_stage = [];
 
@@ -38,16 +39,39 @@ export const STAGE_DISPLAY = {
 
     0: 'field1',
     1: 'yama1',
-    undefined:'blackout'
+    undefined:'blackout',
+    101:'STAGE_ground',
 }
 //障害物
 export const OBBSTACLE = {
     0: 'yama1',
     1:'blackout'
 }
+//ステージ移動
+export const STAGE_MOVE = {
+    0: ['STAGE_ground',-3,-3],
+}
 
+let select = { 'STAGE_ground': STAGE_ground };
 
-let select = { 'ground': ground };
+export function reset_stage(){
+    display_stage = {
+        0: [],
+        1: [],
+        2: [],
+        3: [],
+        4: [],
+        5: [],
+        6: [],
+        7: [],
+        8: [],
+        9: [],
+        10: [],
+        11: [],
+    };
+    display_temp_stage = []
+   
+}
 
 //読み込み専用
 export function read(arr) {
@@ -95,20 +119,28 @@ export function move(direction) {
 
 }
 
-export function judge_hit(now_display_arr, col, row, now_col, now_row) {
+export function judge_hit(now_display_arr, col, row) {
     //次に進むところ
-
-    let return_judg = false;
+    let return_judg = 0;
     let next_ =77+col+(row*12);
     let have_next_class = document.getElementById('ground_child_' + (next_)).classList;
     //障害物有無
-    for (let y = 0; y < Object.keys(OBBSTACLE).length; y++) {
-
-        for (let x = 0; x < have_next_class.length; x++) {
+    for (let x = 0; x < have_next_class.length; x++) {
+        for (let y = 0; y < Object.keys(OBBSTACLE).length; y++) {
             if (have_next_class[x] == OBBSTACLE[y]) {
-                return_judg = true;
+                return_judg = 1;
+            }
+        }
+        //ステージ移動
+        for (let z = 0; z < Object.keys(STAGE_MOVE).length; z++) {
+            if (have_next_class[x] == STAGE_MOVE[z][0]) {
+                return_judg = STAGE_MOVE[z];
             }
         }
     }
     return return_judg;
+}
+
+function ground_change(){
+
 }
