@@ -37,8 +37,7 @@ export default {
             }
         },
         add_class(direction) {
-            console.log(direction)
-            console.log(this.the_before_direction)
+
             if (direction == this.the_before_direction) {
                 
                 if(this.next_num == 2){
@@ -49,7 +48,6 @@ export default {
             } else {
                 this.next_num = 0;
             }
-            console.log(this.next_num)
             let player_element = document.getElementById('player');
             
             player_element.classList.add(this.direction[direction][this.next_num]);
