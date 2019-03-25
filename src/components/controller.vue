@@ -1,18 +1,18 @@
 <template>
 <div id='controllers'>
     <div class="row">
-        <div id='control_top' class='col-6 control_btn border' @click='top_click()'  @mousedown="sample()" @mouseup='release_btn()'>
+        <div id='control_top' class='col-6 control_btn border pointer' @click='top_click()'  @mousedown="sample()" @mouseup='release_btn()'>
             <div class='control_kn'><i class="fas fa-arrow-up"></i></div>
         </div>
-        <div id='control_right' class='col-6 control_btn border' @click='right_click()'>
+        <div id='control_right' class='col-6 control_btn border pointer' @click='right_click()'>
             <div class='control_kn'><i class="fas fa-arrow-right"></i></div>
         </div>
     </div>
     <div class="row">
-        <div id='control_left' class='col-6 control_btn border' @click='left_click()'>
+        <div id='control_left' class='col-6 control_btn border pointer' @click='left_click()'>
             <div class='control_kn'><i class="fas fa-arrow-left"></i></div>
         </div>
-        <div id='control_bottom' class='col-6 control_btn border' @click='bottom_click()'>
+        <div id='control_bottom' class='col-6 control_btn border pointer' @click='bottom_click()'>
             <div class='control_kn'><i class="fas fa-arrow-down"></i></div>
         </div>
     </div>
@@ -129,5 +129,8 @@ export default {
     padding-right: 30px;
     padding-left: 0px;
     font-size: 25px;
+}
+.pointer{
+    cursor: pointer;
 }
 </style>
