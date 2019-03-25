@@ -45,44 +45,45 @@ export default {
             this.$emit('stage_reload', 0, 1, 'bottom');
         },
         put_btn(put_cnt) {
-            let this_ = this;
-            var count = 0;
-            var countup = function () {
-                count++;
-                this_.nowcount = count;
-                var id = setTimeout(countup, 300);
-                if (count > this_.stop_count) {
-                    clearTimeout(id); //idをclearTimeoutで指定している
-                    this_.stop_count = 1000;
-                    this_.nowcount = 0;
-                }
-                if (count > 3) {
-                    this_.now_put = true;
-                }
+            //長押し処理=>バグが多いため停止
+            // let this_ = this;
+            // var count = 0;
+            // var countup = function () {
+            //     count++;
+            //     this_.nowcount = count;
+            //     var id = setTimeout(countup, 300);
+            //     if (count > this_.stop_count) {
+            //         clearTimeout(id); //idをclearTimeoutで指定している
+            //         this_.stop_count = 1000;
+            //         this_.nowcount = 0;
+            //     }
+            //     if (count > 3) {
+            //         this_.now_put = true;
+            //     }
 
-                if (this_.now_put == true) {
-                    console.log(put_cnt)
-                    switch (put_cnt) {
-                        case 'top':
-                            this_.top_click();
-                            break;
-                        case 'left':
-                            this_.left_click();
-                            break;
-                        case 'right':
-                            this_.right_click();
-                            break;
-                        case 'bottom':
-                            this_.bottom_click();
-                            break;
+            //     if (this_.now_put == true) {
+            //         console.log(put_cnt)
+            //         switch (put_cnt) {
+            //             case 'top':
+            //                 this_.top_click();
+            //                 break;
+            //             case 'left':
+            //                 this_.left_click();
+            //                 break;
+            //             case 'right':
+            //                 this_.right_click();
+            //                 break;
+            //             case 'bottom':
+            //                 this_.bottom_click();
+            //                 break;
 
-                        default:
-                            break;
-                    }
+            //             default:
+            //                 break;
+            //         }
                   
-                }
-            }
-            countup();
+            //     }
+        //    }
+        //    countup();
 
         },
         release_btn() {
