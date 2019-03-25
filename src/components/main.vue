@@ -10,6 +10,7 @@
             </div>
           </div>
         </div>
+        <Message ref='message_ref' /> 
       </div>
       <Control v-on:stage_reload="reload_call" v-on:btn_click="front_chk"/>
     </div>
@@ -21,6 +22,7 @@ import * as mainjs from "../assets/js/index.js";
 import * as stagejs from "../assets/js/stage.js";
 import Chara from "./character.vue";
 import Control from "./controller.vue";
+import Message from "./message.vue";
 import { log } from 'util';
 
 export default {
@@ -37,7 +39,8 @@ export default {
   },
   components: {
     Chara,
-    Control
+    Control,
+    Message
   },
   mounted() {
     let mounted_stage = 'STAGE_ground';
@@ -121,7 +124,10 @@ export default {
                 
             }
         }
-        return event_content;
+        
+        if(event_content != undefined)this.$refs.message_ref.throw_event(event_content);
+        
+       
     }
   }
 };

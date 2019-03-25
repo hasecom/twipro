@@ -57,8 +57,8 @@ export default {
             this.$emit('stage_reload', 0, 1, 'bottom');
         },
         click_btn(){
-          let event_get =  this.$emit('btn_click');
-          console.log(event_get)
+          this.$emit('btn_click');
+          
         },
         put_btn(put_cnt) {
             //長押し処理=>バグが多いため停止
