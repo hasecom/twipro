@@ -131,6 +131,6 @@ export default {
     font-size: 25px;
 }
 .pointer{
-    cursor: pointer;
+    cursor:pointer;
 }
 </style>
