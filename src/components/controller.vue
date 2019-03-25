@@ -59,7 +59,9 @@ export default {
                 if (count > 3) {
                     this_.now_put = true;
                 }
+
                 if (this_.now_put == true) {
+                    console.log(put_cnt)
                     switch (put_cnt) {
                         case 'top':
                             this_.top_click();
@@ -77,7 +79,7 @@ export default {
                         default:
                             break;
                     }
-                    this_.top_click();
+                  
                 }
             }
             countup();
