@@ -1,7 +1,7 @@
 <template>
 <div id='controllers'>
     <div class="row">
-        <div id='control_top' class='col-6 control_btn border pointer' @click='top_click()'  @mousedown="sample()" @mouseup='release_btn()'>
+        <div id='control_top' class='col-6 control_btn border pointer' @click='top_click()'  @touchstart="sample()" @touchend='release_btn()'>
             <div class='control_kn'><i class="fas fa-arrow-up"></i></div>
         </div>
         <div id='control_right' class='col-6 control_btn border pointer' @click='right_click()'>
@@ -45,7 +45,7 @@ export default {
             this.$emit('stage_reload', 0, 1, 'bottom');
         },
         sample() {
-            
+       console.log("iiiii")
             let this_ = this;
             var count = 0;     
             var countup = function () { 
@@ -66,8 +66,9 @@ export default {
             
         },
         release_btn() {
+                console.log("fini")
             this.now_put = false;
-            console.log(this.nowcount)
+           
             this.stop_count = this.nowcount;
         }
     }
