@@ -1,14 +1,16 @@
 <template>
 <div id='message_board' class='border' v-if='display_message_board' @click='Close_or_NextPage()'>
-    {{serif}}
+    {{who}}{{serif}}
 </div>
 </template>
 
 <script>
+import * as mainjs from "../assets/js/index.js";
 export default {
     name: 'message',
     data() {
         return {
+            who:'',
             serif:'',
             display_message_board:false,
             board_page:1,
@@ -21,12 +23,16 @@ export default {
                 this.Close_or_NextPage();
                 return false;
                 }
+            mainjs.read_message_display_toggle(true);
             this.display_message_board = true;
-            this.serif = event_content[1];
+            this.who=event_content[0]+ '： '
+            this.serif ='「 '+event_content[1] + ' 」';
         },
         Close_or_NextPage(){
             if(this.board_page == this.now_page){
+                mainjs.read_message_display_toggle(false);
                 this.display_message_board = false;
+                
             }
         }
     }

@@ -34,7 +34,7 @@ export default {
       stage: "",
       temp_arr:[],
       player_direction:'',
-      counts:0
+      counts:0,
     };
   },
   components: {
@@ -67,6 +67,7 @@ export default {
     },
     //移動時ロード direction->方向
     reload_call(col,row,direction) {
+   if(mainjs.read_message_display_() != false)return false;
     this.counts = this.counts + 1;
     this.player_direction = direction;
     //当たり判定
@@ -124,7 +125,7 @@ export default {
                 
             }
         }
-        
+
         if(event_content != undefined)this.$refs.message_ref.throw_event(event_content);
         
        

@@ -75,7 +75,7 @@ export const STAGE_MOVE = {
 }
 //イベント name,serif
 export const EVENT_ = {
-    'man_front':['住居人','HELLO'],
+    'man_front':['男','くっそｗｗｗｗｗ'],
 }
 
 let select = { 
