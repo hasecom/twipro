@@ -1,18 +1,18 @@
 <template>
 <div id='controllers'>
     <div class="row">
-        <div id='control_top' class='col-6 control_btn border pointer' @click='top_click()'  @touchstart="sample()" @touchend='release_btn()'>
+        <div id='control_top' class='col-6 control_btn border pointer' @click='top_click()' @touchstart="put_btn('top')" @touchend='release_btn()'>
             <div class='control_kn'><i class="fas fa-arrow-up"></i></div>
         </div>
-        <div id='control_right' class='col-6 control_btn border pointer' @click='right_click()'>
+        <div id='control_right' class='col-6 control_btn border pointer' @click='right_click()' @touchstart="put_btn('right')" @touchend='release_btn()'>
             <div class='control_kn'><i class="fas fa-arrow-right"></i></div>
         </div>
     </div>
     <div class="row">
-        <div id='control_left' class='col-6 control_btn border pointer' @click='left_click()'>
+        <div id='control_left' class='col-6 control_btn border pointer' @click='left_click()' @touchstart="put_btn('left')" @touchend='release_btn()'>
             <div class='control_kn'><i class="fas fa-arrow-left"></i></div>
         </div>
-        <div id='control_bottom' class='col-6 control_btn border pointer' @click='bottom_click()'>
+        <div id='control_bottom' class='col-6 control_btn border pointer' @click='bottom_click()' @touchstart="put_btn('bottom')" @touchend='release_btn()'>
             <div class='control_kn'><i class="fas fa-arrow-down"></i></div>
         </div>
     </div>
@@ -28,7 +28,7 @@ export default {
         return {
             stop_count: 1000,
             nowcount: 0,
-            now_put:false
+            now_put: false
         }
     },
     methods: {
@@ -44,31 +44,47 @@ export default {
         bottom_click() {
             this.$emit('stage_reload', 0, 1, 'bottom');
         },
-        sample() {
-       console.log("iiiii")
+        put_btn(put_cnt) {
             let this_ = this;
-            var count = 0;     
-            var countup = function () { 
+            var count = 0;
+            var countup = function () {
                 count++;
                 this_.nowcount = count;
-                var id = setTimeout(countup, 100);
-                if (count > this_.stop_count ) {
+                var id = setTimeout(countup, 300);
+                if (count > this_.stop_count) {
                     clearTimeout(id); //idをclearTimeoutで指定している
-                    this_.stop_count  =1000;
+                    this_.stop_count = 1000;
                     this_.nowcount = 0;
                 }
-                if(count > 3){ this_.now_put = true;}
-                if(this_.now_put == true){ 
-                this_.top_click();
+                if (count > 3) {
+                    this_.now_put = true;
+                }
+                if (this_.now_put == true) {
+                    switch (put_cnt) {
+                        case 'top':
+                            this_.top_click();
+                            break;
+                        case 'left':
+                            this_.left_click();
+                            break;
+                        case 'right':
+                            this_.right_click();
+                            break;
+                        case 'bottom':
+                            this_.bottom_click();
+                            break;
+
+                        default:
+                            break;
+                    }
+                    this_.top_click();
                 }
             }
             countup();
-            
+
         },
         release_btn() {
-                console.log("fini")
             this.now_put = false;
-           
             this.stop_count = this.nowcount;
         }
     }
@@ -131,7 +147,8 @@ export default {
     padding-left: 0px;
     font-size: 25px;
 }
-.pointer{
-    cursor:pointer;
+
+.pointer {
+    cursor: pointer;
 }
 </style>
