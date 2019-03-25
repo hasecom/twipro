@@ -73,6 +73,10 @@ export const STAGE_MOVE = {
     0: ['STAGE_ground',6,1],
     1: ['STAGE_ground2',-4,1],
 }
+//イベント
+export const EVENT_ = {
+    'man_front':['HELLO'],
+}
 
 let select = { 
     'STAGE_ground': STAGE_ground ,
@@ -125,22 +129,6 @@ export function display_stage_reflect(col, row, stage_name) {
 }
 
 export function move(direction) {
-    switch (direction) {
-        case 'top':
-
-            break;
-        case 'left':
-
-            break;
-        case 'right':
-
-            break;
-        case 'bottom':
-
-            break;
-        default:
-            break;
-    }
 
 }
 
@@ -149,10 +137,12 @@ export function judge_hit(now_display_arr, col, row) {
     let return_judg = 0;
     let next_ =77+col+(row*12);
     let have_next_class = document.getElementById('ground_child_' + (next_)).classList;
+     
     //障害物有無
     for (let x = 0; x < have_next_class.length; x++) {
         for (let y = 0; y < Object.keys(OBBSTACLE).length; y++) {
             if (have_next_class[x] == OBBSTACLE[y]) {
+               
                 return_judg = 1;
             }
         }
@@ -163,6 +153,7 @@ export function judge_hit(now_display_arr, col, row) {
             }
         }
     }
+    
     return return_judg;
 }
 

@@ -19,7 +19,7 @@
         </div>
 
     </div>
-    <div id='click_btn' class='border'>
+    <div id='click_btn' class='border pointer' @click='click_btn()'>
         <span class='click_btn_inner'>
         <i class="far fa-hand-point-up"></i>
         </span>
@@ -55,6 +55,10 @@ export default {
         },
         bottom_click() {
             this.$emit('stage_reload', 0, 1, 'bottom');
+        },
+        click_btn(){
+          let event_get =  this.$emit('btn_click');
+          console.log(event_get)
         },
         put_btn(put_cnt) {
             //長押し処理=>バグが多いため停止

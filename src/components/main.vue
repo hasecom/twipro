@@ -11,7 +11,7 @@
           </div>
         </div>
       </div>
-      <Control v-on:stage_reload="reload_call"/>
+      <Control v-on:stage_reload="reload_call" v-on:btn_click="front_chk"/>
     </div>
   </div>
 </template>
@@ -103,6 +103,25 @@ export default {
       for (let k = 0; k < stage_temp_arr.length; k++) {
         document.getElementById("ground_child_" + k).classList.remove(stagejs.STAGE_DISPLAY[stage_temp_arr[k]]);
       }
+    },
+    front_chk(){
+        let direction_chk = {
+            'top':65,
+            'right':78,
+            'left':76,
+            'bottom':89,
+        }
+        let event_content;
+        let direction_classList = document.getElementById('ground_child_'+direction_chk[this.player_direction]).classList;
+        for(let ii = 0; ii < direction_classList.length; ii++){
+            for (let jj = 0; jj < Object.keys(stagejs.EVENT_).length; jj++) {
+                if(direction_classList[ii] == Object.keys(stagejs.EVENT_)[jj]){
+                    event_content = stagejs.EVENT_[Object.keys(stagejs.EVENT_)[jj]];
+                }
+                
+            }
+        }
+        return event_content;
     }
   }
 };
