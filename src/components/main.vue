@@ -147,4 +147,14 @@ export default {
   background: url("../assets/img/field/yama1.png") no-repeat center center;
   object-fit: cover;
 }
+.water1 {
+  background: url("../assets/img/field/water1.png") no-repeat center center;
+  object-fit: cover;
+}
+.man_front{
+  background: url("../assets/img/chara/man_front.png"),
+  url("../assets/img/field/field1.png"),
+  no-repeat center center;
+  object-fit: cover;
+}
 </style>

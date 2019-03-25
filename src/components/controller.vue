@@ -1,21 +1,29 @@
 <template>
-<div id='controllers'>
-    <div class="row">
-        <div id='control_top' class='col-6 control_btn border pointer' @click='top_click()' @touchstart="put_btn('top')" @touchend='release_btn()'>
-            <div class='control_kn'><i class="fas fa-arrow-up"></i></div>
+<div>
+    <div id='controllers'>
+        <div class="row">
+            <div id='control_top' class='col-6 control_btn border pointer' @click='top_click()' @touchstart="put_btn('top')" @touchend='release_btn()'>
+                <div class='control_kn'><i class="fas fa-arrow-up"></i></div>
+            </div>
+            <div id='control_right' class='col-6 control_btn border pointer' @click='right_click()' @touchstart="put_btn('right')" @touchend='release_btn()'>
+                <div class='control_kn'><i class="fas fa-arrow-right"></i></div>
+            </div>
         </div>
-        <div id='control_right' class='col-6 control_btn border pointer' @click='right_click()' @touchstart="put_btn('right')" @touchend='release_btn()'>
-            <div class='control_kn'><i class="fas fa-arrow-right"></i></div>
+        <div class="row">
+            <div id='control_left' class='col-6 control_btn border pointer' @click='left_click()' @touchstart="put_btn('left')" @touchend='release_btn()'>
+                <div class='control_kn'><i class="fas fa-arrow-left"></i></div>
+            </div>
+            <div id='control_bottom' class='col-6 control_btn border pointer' @click='bottom_click()' @touchstart="put_btn('bottom')" @touchend='release_btn()'>
+                <div class='control_kn'><i class="fas fa-arrow-down"></i></div>
+            </div>
         </div>
+
     </div>
-    <div class="row">
-        <div id='control_left' class='col-6 control_btn border pointer' @click='left_click()' @touchstart="put_btn('left')" @touchend='release_btn()'>
-            <div class='control_kn'><i class="fas fa-arrow-left"></i></div>
+    <div id='click_btn' class='border'>
+        <span class='click_btn_inner'>
+        <i class="far fa-hand-point-up"></i>
+        </span>
         </div>
-        <div id='control_bottom' class='col-6 control_btn border pointer' @click='bottom_click()' @touchstart="put_btn('bottom')" @touchend='release_btn()'>
-            <div class='control_kn'><i class="fas fa-arrow-down"></i></div>
-        </div>
-    </div>
 </div>
 </template>
 
@@ -32,8 +40,8 @@ export default {
             now_put: false
         }
     },
-    components:{
-Chara
+    components: {
+        Chara
     },
     methods: {
         top_click() {
@@ -84,10 +92,10 @@ Chara
             //             default:
             //                 break;
             //         }
-                  
+
             //     }
-        //    }
-        //    countup();
+            //    }
+            //    countup();
 
         },
         release_btn() {
@@ -117,17 +125,28 @@ Chara
     width: 50px;
     height: 50px;
 }
+#control_top:active{
+    background-color:rgba(0,0,0,1);
+    color:white;
+}
 
 #control_right {
     background: gray;
     width: 50px;
     height: 50px;
 }
-
+#control_right:active{
+    background-color:rgba(0,0,0,1);
+    color:white;
+}
 #control_left {
     background: gray;
     width: 50px;
     height: 50px;
+}
+#control_left:active{
+    background-color:rgba(0,0,0,1);
+    color:white;
 }
 
 #control_bottom {
@@ -135,10 +154,15 @@ Chara
     width: 50px;
     height: 50px;
 }
+#control_bottom:active{
+    background-color:rgba(0,0,0,1);
+    color:white;
+}
 
 .control_btn {
     border-radius: 50%;
 }
+
 
 .control_kn {
     color: white;
@@ -157,5 +181,30 @@ Chara
 
 .pointer {
     cursor: pointer;
+}
+#click_btn{
+    width:50px;
+    height:50px;
+    background:rgba(49,116,224,1.0);
+    position:absolute;
+    top:400px;
+    right:60px;
+    border-radius: 50%;
+}
+.click_btn_inner{
+    color:rgba(0,0,0,0.7);
+    font-size:30px;
+    width:30px;
+    height:30px;
+    margin: 0 auto;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    position:absolute;
+}
+#click_btn:active{
+    background:rgba(49,116,224,0.4);
+    color:white;
 }
 </style>
