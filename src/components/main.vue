@@ -6,7 +6,7 @@
           <div class="ground_child col-1" v-for="m in 12" :key="m">
             <!-- 中央にキャラクター配置(row:7,col:7) -->
             <div v-if="n==7 && m == 6">
-              <Chara/>
+              <Chara ref='chara_ref'/>
             </div>
           </div>
         </div>
@@ -30,7 +30,9 @@ export default {
       col: 0,
       row: 0,
       stage: "",
-      temp_arr:[]
+      temp_arr:[],
+      player_direction:'',
+      counts:0
     };
   },
   components: {
@@ -40,6 +42,11 @@ export default {
   mounted() {
     let mounted_stage = 'STAGE_ground';
     this.load_call(mounted_stage,0,0);
+  },
+  watch:{
+      counts(to,from){
+          this.$refs.chara_ref[0].player_direction(this.player_direction);  
+      }
   },
   methods: {
     //初期ロード
@@ -57,6 +64,8 @@ export default {
     },
     //移動時ロード direction->方向
     reload_call(col,row,direction) {
+    this.counts = this.counts + 1;
+    this.player_direction = direction;
     //当たり判定
     let hit_return = stagejs.judge_hit(this.temp_arr,col,row);
     if( hit_return ==1)return false;

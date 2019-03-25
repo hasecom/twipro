@@ -21,6 +21,7 @@
 
 <script>
 import * as stagejs from '../assets/js/stage.js';
+import Chara from "./character.vue";
 
 export default {
     name: 'control',
@@ -30,6 +31,9 @@ export default {
             nowcount: 0,
             now_put: false
         }
+    },
+    components:{
+Chara
     },
     methods: {
         top_click() {
