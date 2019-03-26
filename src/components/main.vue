@@ -13,6 +13,7 @@
         <Message ref='message_ref' /> 
       </div>
       <Control v-on:stage_reload="reload_call" v-on:btn_click="front_chk"/>
+    <Bgm />
     </div>
   </div>
 </template>
@@ -23,6 +24,7 @@ import * as stagejs from "../assets/js/stage.js";
 import Chara from "./character.vue";
 import Control from "./controller.vue";
 import Message from "./message.vue";
+import Bgm from "./bgm.vue";
 import { log } from 'util';
 
 export default {
@@ -40,7 +42,8 @@ export default {
   components: {
     Chara,
     Control,
-    Message
+    Message,
+    Bgm
   },
   mounted() {
     let mounted_stage = 'STAGE_ground';
