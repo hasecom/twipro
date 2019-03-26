@@ -3,12 +3,10 @@ import { type } from "os";
 let bgm = {//name,filename
     'talk':'decision22'
 };
-let myAudio = new Audio();
-let bgmAudio = new Audio();
+let myAudio = new Audio(require('../media/nervous.mp3'));
 let isSound = false;
 export function play_sound(){
     isSound = true;
-    myAudio.src= require('../media/nervous.mp3');
     myAudio.play();
 }
 export function stop_sound(){
@@ -22,9 +20,9 @@ export function load_sound(){
     myAudio.currentTime = 0;
 }
 export function Bgm_sound(filename){
-    console.log(bgm[filename])
+    let bgmAudio = new Audio(require('../media/'+ bgm[filename] +'.mp3'));
+    bgmAudio.load();
     if(isSound != true)return false;
-    console.log("音なれ")
-    bgmAudio.src = require('../media/'+ bgm[filename] +'.mp3');
+    
     bgmAudio.play();
 }
