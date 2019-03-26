@@ -5,12 +5,15 @@
         <label class="custom-control-label" for="customSwitch1">BGM</label>
     </div>
     <audio id="bgm_play" loop autoplay muted >
-        <source src="../assets/music/nervous.mp3" type="audio/mp3">
+        <!-- <source src="../assets/music/nervous.mp3" type="audio/mp3"> -->
+        
     </audio>
 </div>
 </template>
 
 <script>
+import * as bgmjs from "../assets/js/bgm.js";
+
 export default {
     data() {
         return {
@@ -24,6 +27,7 @@ export default {
     },mounted:function(){
      let bgm_audio = document.getElementById('bgm_play');
      bgm_audio.muted = true;
+     bgmjs.play_sound(bgm_audio);
     },
     methods: {
         bgm_toggle_func() {
@@ -31,7 +35,6 @@ export default {
             if (bgm_audio.muted) {
                 bgm_audio.muted = false;
             } else {
-                console.log("iiii")
                 bgm_audio.muted = true;
             }
         }
