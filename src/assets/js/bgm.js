@@ -11,6 +11,7 @@ export function play_sound(bgm_element){
 
     //最後の子要素として追加
     bgm_element.appendChild(sound);
+    console.log(bgm_element)
 }
 export function stop_sound(){
 

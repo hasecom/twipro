@@ -6,6 +6,7 @@
     </div>
     <audio id="bgm_play" loop autoplay muted >
         <!-- <source src="../assets/music/nervous.mp3" type="audio/mp3"> -->
+        <source :src="file_path" type="audio/mp3">
         
     </audio>
 </div>
@@ -17,7 +18,8 @@ import * as bgmjs from "../assets/js/bgm.js";
 export default {
     data() {
         return {
-            bgm_toggle: false
+            bgm_toggle: false,
+            file_path:'../assets/music/decision22.mp3'
         }
     },
     watch: {
