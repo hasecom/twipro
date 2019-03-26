@@ -1,19 +1,30 @@
 import { type } from "os";
 
 let bgm = {//name,filename
-    'decision22':'decision22'
+    'talk':'decision22'
 };
-
-export function play_sound(bgm_element){
-    let sound = document.createElement('source');
-    sound.src='../assets/music/decision22.mp3';
-    sound.type = 'audio/mp3';
-
-    //最後の子要素として追加
-    //bgm_element.appendChild(sound);
-    console.log(bgm_element)
+let myAudio = new Audio();
+let bgmAudio = new Audio();
+let isSound = false;
+export function play_sound(){
+    isSound = true;
+    myAudio.src= require('../media/nervous.mp3');
+    myAudio.play();
 }
 export function stop_sound(){
-
+    isSound = false;
+    myAudio.pause();
 }
-
+export function load_sound(){
+    isSound = false;
+    myAudio.load();
+    myAudio.pause();
+    myAudio.currentTime = 0;
+}
+export function Bgm_sound(filename){
+    console.log(bgm[filename])
+    if(isSound != true)return false;
+    console.log("音なれ")
+    bgmAudio.src = require('../media/'+ bgm[filename] +'.mp3');
+    bgmAudio.play();
+}

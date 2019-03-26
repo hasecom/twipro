@@ -6,6 +6,7 @@
 
 <script>
 import * as mainjs from "../assets/js/index.js";
+import * as bgmjs from "../assets/js/bgm.js";
 export default {
     name: 'message',
     data() {
@@ -23,6 +24,7 @@ export default {
                 this.Close_or_NextPage();
                 return false;
                 }
+            bgmjs.Bgm_sound(event_content[2]);
             mainjs.read_message_display_toggle(true);
             this.display_message_board = true;
             this.who=event_content[0]+ '： '
