@@ -21,6 +21,7 @@
 <script>
 import * as mainjs from "../assets/js/index.js";
 import * as stagejs from "../assets/js/stage.js";
+import * as bgmjs from "../assets/js/bgm.js";
 import Chara from "./character.vue";
 import Control from "./controller.vue";
 import Message from "./message.vue";
@@ -79,6 +80,7 @@ export default {
     //ステージ移動
     if( hit_return !=0){
         //NEXTステージ名,col,row
+        bgmjs.Bgm_sound(hit_return[3]);
         this.load_call(hit_return[0],hit_return[1],hit_return[2]); 
         return false;
         }

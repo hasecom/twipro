@@ -15,7 +15,7 @@ export default {
     data() {
         return {
             bgm_toggle: false,
-           
+            bgm_label : 'back01'
         }
     },
     watch: {
@@ -23,14 +23,14 @@ export default {
             this.bgm_toggle_func(to);
         }
     },mounted:function(){
-     bgmjs.load_sound();
+     bgmjs.load_sound(this.bgm_label);
     },
     methods: {
         bgm_toggle_func(toggle) {
             if(toggle == true){
-                bgmjs.play_sound();
+                bgmjs.play_sound(this.bgm_label);
             }else{
-                bgmjs.stop_sound();
+                bgmjs.stop_sound(this.bgm_label);
             }
         }
     }

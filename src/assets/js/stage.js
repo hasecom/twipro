@@ -68,14 +68,14 @@ export const OBBSTACLE = {
     2: 'water1',
     3:'man_front'
 }
-//ステージ移動
+//ステージ移動 ステージ名,col,row,bgm
 export const STAGE_MOVE = {
-    0: ['STAGE_ground',6,1],
-    1: ['STAGE_ground2',-4,1],
+    0: ['STAGE_ground',6,1,'enter01'],
+    1: ['STAGE_ground2',-4,1,'enter01'],
 }
 //イベント name,serif,type->bgm,
 export const EVENT_ = {
-    'man_front':['男','くっぅそｗｗｗｗｗ','talk']
+    'man_front':['男','くっぅそｗｗｗｗｗ/そんなことｗｗｗ','talk']
 }
 
 let select = { 
@@ -149,6 +149,7 @@ export function judge_hit(now_display_arr, col, row) {
         //ステージ移動
         for (let z = 0; z < Object.keys(STAGE_MOVE).length; z++) {
             if (have_next_class[x] == STAGE_MOVE[z][0]) {
+                
                 return_judg = STAGE_MOVE[z];
             }
         }
