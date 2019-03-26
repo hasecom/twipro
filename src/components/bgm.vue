@@ -1,23 +1,49 @@
 <template>
-    <div id='bgm'>
-       
-<div class="custom-control custom-switch">
-  <input type="checkbox" class="custom-control-input" id="customSwitch1">
-  <label class="custom-control-label" for="customSwitch1">BGM</label>
-</div>
+<div id='bgm'>
+    <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitch1" v-model="bgm_toggle">
+        <label class="custom-control-label" for="customSwitch1">BGM</label>
     </div>
+    <audio id="bgm_play" loop autoplay muted >
+        <source src="../assets/music/nervous.mp3" type="audio/mp3">
+    </audio>
+</div>
 </template>
+
 <script>
 export default {
-    
+    data() {
+        return {
+            bgm_toggle: false
+        }
+    },
+    watch: {
+        bgm_toggle(to, from) {
+            this.bgm_toggle_func();
+        }
+    },mounted:function(){
+     let bgm_audio = document.getElementById('bgm_play');
+     bgm_audio.muted = true;
+    },
+    methods: {
+        bgm_toggle_func() {
+            let bgm_audio = document.getElementById('bgm_play');
+            if (bgm_audio.muted) {
+                bgm_audio.muted = false;
+            } else {
+                console.log("iiii")
+                bgm_audio.muted = true;
+            }
+        }
+    }
 }
 </script>
-<style scoped>
-#bgm{
-    position: absolute;
-    top:400px;
-    color:white;
-    width:10px;
-}
 
+<style scoped>
+#bgm {
+    position: absolute;
+    top: 400px;
+    color: white;
+    width: 10px;
+}
 </style>
