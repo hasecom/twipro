@@ -6,7 +6,7 @@
     </div>
     <audio id="bgm_play" loop autoplay muted >
         <!-- <source src="../assets/music/nervous.mp3" type="audio/mp3"> -->
-        <source :src="file_path" type="audio/mp3">
+        <source src="../assets/music/decision22.mp3" type="audio/mp3">
         
     </audio>
 </div>

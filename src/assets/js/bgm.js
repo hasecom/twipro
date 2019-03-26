@@ -10,7 +10,7 @@ export function play_sound(bgm_element){
     sound.type = 'audio/mp3';
 
     //最後の子要素として追加
-    bgm_element.appendChild(sound);
+    //bgm_element.appendChild(sound);
     console.log(bgm_element)
 }
 export function stop_sound(){
