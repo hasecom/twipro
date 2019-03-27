@@ -1,6 +1,6 @@
 <template>
-<div id='message_board' class='border' v-if='display_message_board' @click='Close_or_NextPage()'>
-    {{who}}{{animation_serif}}
+<div id='message_board' class='border' v-if='display_message_board' :data-person='who' @click='Close_or_NextPage()'>
+    {{animation_serif}}
 </div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
                 return false;
             }
             //bgm
-            bgmjs.Bgm_sound(this.event_content[2]);
+           // bgmjs.Bgm_sound(this.event_content[2]);
             // '/'で分けられた項目をページ単位にして配列に格納
             this.page_content = this.event_content[1].split('/');
             //ページ数
@@ -40,7 +40,7 @@ export default {
             this.output_content();
         },
         output_content() {
-            this.who = this.event_content[0] + '： ';
+            this.who = this.event_content[0];
             var close_ = '';
             var open_ = '';
             if (this.now_page == 1) open_ = '「 ';
@@ -65,13 +65,17 @@ export default {
             var count = 0;
             let this_ = this;
             let message_board_color = 1;
+            bgmjs.Bgm_sound(this.event_content[3]);
             var countup = function () {
                 count++;
+                
             }
             var id = setInterval(function () {
                 this_.animation_serif = this_.serif.slice(0,count);
                 if (count >= this_.serif.split('').length) {
                     clearInterval(id); //idをclearIntervalで指定している
+                bgmjs.Bgm_stop(this_.event_content[3]);
+                    
                 }
                 if(count%5 ==0){
                     if(message_board_color == 1){
@@ -103,6 +107,21 @@ export default {
     height: 60px;
     background: black;
     padding: 3px 10px 3px 10px;
+}
+#message_board:before {
+    content:attr(data-person);
+    left: 0;
+    top:-40px;
+    width:80px;
+    background:black;
+    padding:10px;
+    padding-right: 10px;
+    padding-left:10px;
+    padding-top:5px;
+    padding-bottom:5px;
+    border:1px solid white;
+    position: absolute;
+    color:white;
 }
 
 #message_board:after {
