@@ -1,0 +1,146 @@
+<template>
+<div>
+    <div id='details' v-if='isDetails' class='row'>
+        <div :id='items[n-1][0]' :ref='items[n-1][0]' class='items_list col-6 ' :class='make_class(n)' v-for='n in Object.keys(items).length' :key="n">
+            {{items[n-1][1]}}
+        </div>
+    </div>
+    <div id='details_display' class='border pointer' @click="details_click()">
+        <div id="inner_details">
+            <i class="fas fa-briefcase"></i>
+        </div>
+    </div>
+</div>
+</template>
+
+<script>
+import * as mainjs from "../assets/js/index.js";
+import {
+    log
+} from 'util';
+
+export default {
+    data() {
+        return {
+            isDetails: false,
+            items: {
+                0: ['item', 'アイテム'],
+                1: ['save', 'セーブ'],
+                2: ['end', '終わる'],
+                3: ['and', 'る'],
+            },
+            now_area: 0
+
+        }
+    },
+    methods: {
+        details_click() {
+            if (this.isDetails == false) {
+                //open
+                this.isDetails = true;
+                mainjs.read_details_display_toggle(true);
+            } else {
+                //close
+                this.isDetails = false;
+                mainjs.read_details_display_toggle(false);
+            }
+
+        },
+        details_controller(direction) {
+            //移動域
+            let move_area = Math.ceil(Object.keys(this.items).length / 2);
+            let sample = x => x + 'だよ';
+            let _this = this;
+            let direction_processing = {
+                top: {
+                    param: 'top',
+                    func: function (move_area) {
+                        if (move_area > _this.now_area) return 0;
+                        return -move_area;
+                    }
+                },
+                bottom: {
+                    param: 'bottom',
+                    func: function (move_area) {
+                        if (move_area <= _this.now_area) return 0;
+                        return move_area;
+                    }
+                },
+                right: {
+                    param: 'right',
+                    func: function () {
+                        if (_this.now_area >= Object.keys(_this.items).length -1) return 0;
+                        return 1;
+                    }
+
+                },
+                left: {
+                    param: 'left',
+                    func: function (move_area) {
+                        if (_this.now_area <= 0) return 0;
+                        return -1;
+                    }
+
+                }
+            };
+             
+            this.now_area = this.now_area + direction_processing[direction].func(move_area);;
+        },
+        make_class(num) {//ロード時のselectクラス付与
+            if (num != this.now_area + 1) return false;
+            return 'select';
+        }
+    }
+}
+</script>
+
+<style scoped>
+#details_display {
+    color: white;
+    width: 50px;
+    height: 50px;
+    background: rgba(49, 116, 224, 1.0);
+    position: absolute;
+    top: 500px;
+    right: 60px;
+    border-radius: 50%;
+}
+
+#inner_details {
+    color: black;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    position: absolute;
+}
+
+#details {
+    color: white;
+    position: absolute;
+    top: 150px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: inherit;
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: 1px solid white;
+    height: 100px;
+    background: black;
+    z-index: 3;
+}
+
+.select {
+    font-weight: bold;
+}
+
+.select:before {
+    content: '▶︎'
+}
+</style>
