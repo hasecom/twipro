@@ -76,7 +76,7 @@ export default {
         },
         //移動時ロード direction->方向
         reload_call(col, row, direction) {
-
+                //Menu等_open時のボタン操作
             if (mainjs.read_message_display_() != false) return false;
             if (mainjs.read_details_display_() != false) {
                 this.$refs.details_ref.details_controller(direction);
@@ -124,6 +124,13 @@ export default {
             }
         },
         front_chk() {
+            //Menu開いている時のクリック
+            if(mainjs.read_details_display_() != false){
+                this.$refs.details_ref.decision_click();
+                return false;
+                }
+            
+            //キャラクターの上下左右に位置する情報をゲット
             let direction_chk = {
                 'top': 65,
                 'right': 78,

@@ -15,6 +15,7 @@
 
 <script>
 import * as mainjs from "../assets/js/index.js";
+import * as menu_item from "../assets/js/menu_item.js";
 import {
     log
 } from 'util';
@@ -35,6 +36,7 @@ export default {
     },
     methods: {
         details_click() {
+            if (mainjs.read_message_display_() != false) return false;
             if (this.isDetails == false) {
                 //open
                 this.isDetails = true;
@@ -49,7 +51,6 @@ export default {
         details_controller(direction) {
             //移動域
             let move_area = Math.ceil(Object.keys(this.items).length / 2);
-            let sample = x => x + 'だよ';
             let _this = this;
             let direction_processing = {
                 top: {
@@ -69,7 +70,7 @@ export default {
                 right: {
                     param: 'right',
                     func: function () {
-                        if (_this.now_area >= Object.keys(_this.items).length -1) return 0;
+                        if (_this.now_area >= Object.keys(_this.items).length - 1) return 0;
                         return 1;
                     }
 
@@ -83,12 +84,18 @@ export default {
 
                 }
             };
-             
-            this.now_area = this.now_area + direction_processing[direction].func(move_area);;
+
+            this.now_area = this.now_area + direction_processing[direction].func(move_area);
         },
-        make_class(num) {//ロード時のselectクラス付与
+        make_class(num) { //ロード時のselectクラス付与
             if (num != this.now_area + 1) return false;
             return 'select';
+        },
+        decision_click() {
+            let this_ = this;
+            menu_item.DETAILS_ITEM.forEach(function (val, key) {
+              if(this_.items[this_.now_area][0] == val.param) val.func();
+            });
         }
     }
 }
