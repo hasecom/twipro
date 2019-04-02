@@ -1,8 +1,13 @@
 <template>
 <div>
-    <div id='details' v-if='isDetails' class='row'>
-        <div :id='items[n-1][0]' :ref='items[n-1][0]' class='items_list col-6 ' :class='make_class(n)' v-for='n in Object.keys(items).length' :key="n">
-            {{items[n-1][1]}}
+    <div id='details' v-if='isDetails'>
+        <div id="cotent" class='row' v-if='display_details == "menu"'>
+            <div :id='items[n-1][0]' :ref='items[n-1][0]' class='items_list col-6 ' :class='make_class(n)' v-for='n in Object.keys(items).length' :key="n">
+                {{items[n-1][1]}}
+            </div>
+        </div>
+        <div id="cotent"  v-if='display_details == "item"'>
+            {{details_output}}
         </div>
     </div>
     <div id='details_display' class='border pointer' @click="details_click()">
@@ -30,9 +35,13 @@ export default {
                 2: ['end', '終わる'],
                 3: ['and', 'る'],
             },
-            now_area: 0
-
+            now_area: 0,
+            display_details: '',
+            details_output:''
         }
+    },
+    mounted: function () {
+        this.details_display_chk();
     },
     methods: {
         details_click() {
@@ -41,10 +50,13 @@ export default {
                 //open
                 this.isDetails = true;
                 mainjs.read_details_display_toggle(true);
+
             } else {
                 //close
                 this.isDetails = false;
                 mainjs.read_details_display_toggle(false);
+                //クローズ時に開くメニューを初期化
+               this.display_details= menu_item.details_display_initialize();
             }
 
         },
@@ -94,8 +106,14 @@ export default {
         decision_click() {
             let this_ = this;
             menu_item.DETAILS_ITEM.forEach(function (val, key) {
-              if(this_.items[this_.now_area][0] == val.param) val.func();
+                if (this_.items[this_.now_area][0] == val.param) val.func();
             });
+
+            this.details_display_chk();
+            this.details_output = menu_item.details_output;
+        },
+        details_display_chk() {
+            this.display_details = menu_item.details_display_set;
         }
     }
 }
@@ -141,6 +159,11 @@ export default {
     height: 100px;
     background: black;
     z-index: 3;
+}
+
+#cotent {
+    width: inherit;
+    height: inherit;
 }
 
 .select {

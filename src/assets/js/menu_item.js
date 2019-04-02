@@ -2,7 +2,8 @@ export const DETAILS_ITEM = [
     {
        param:'item',
        func:function(){
-           console.log("KK")
+        details_display_set =this.param;
+        details_output = 'Hello'
         }
     },
     {
@@ -26,3 +27,10 @@ export const DETAILS_ITEM = [
 
 ]
 
+export let details_display_set = 'menu';
+
+export function details_display_initialize(){
+        details_display_set = 'menu';
+        return 'menu'
+}
+export let details_output = '';
