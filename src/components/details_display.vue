@@ -6,8 +6,10 @@
                 {{items[n-1][1]}}
             </div>
         </div>
-        <div id="cotent"  v-if='display_details == "item"'>
-            {{details_output}}
+        <div id="cotent" class='row' v-if='display_details == "item"'>
+            <div :id='details_output[n-1][0]' :ref='details_output[n-1][0]' class='items_list col-6 ' :class='make_class(n)' v-for='n in Object.keys(details_output).length' :key="n">
+                {{details_output[n-1][1]}}
+            </div>
         </div>
     </div>
     <div id='details_display' class='border pointer' @click="details_click()">
@@ -37,11 +39,12 @@ export default {
             },
             now_area: 0,
             display_details: '',
-            details_output:''
+            details_output: []
         }
     },
     mounted: function () {
         this.details_display_chk();
+        this.details_output = this.items;
     },
     methods: {
         details_click() {
@@ -56,13 +59,13 @@ export default {
                 this.isDetails = false;
                 mainjs.read_details_display_toggle(false);
                 //クローズ時に開くメニューを初期化
-               this.display_details= menu_item.details_display_initialize();
+                this.display_details = menu_item.details_display_initialize();
             }
 
         },
         details_controller(direction) {
             //移動域
-            let move_area = Math.ceil(Object.keys(this.items).length / 2);
+            let move_area = Math.ceil(Object.keys(this.details_output).length / 2);
             let _this = this;
             let direction_processing = {
                 top: {
@@ -105,9 +108,16 @@ export default {
         },
         decision_click() {
             let this_ = this;
-            menu_item.DETAILS_ITEM.forEach(function (val, key) {
-                if (this_.items[this_.now_area][0] == val.param) val.func();
-            });
+    
+            //現在表示により処理を分岐
+            let loopitems = {
+                'menu':menu_item.DETAILS_ITEM,
+                'item':menu_item.item_list};
+                loopitems[menu_item.details_display_set].forEach(function (val, key) {
+                    console.log(val)
+                    if (this_.items[this_.now_area][0] == val.param) val.func();
+                });
+
 
             this.details_display_chk();
             this.details_output = menu_item.details_output;

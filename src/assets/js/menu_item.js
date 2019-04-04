@@ -1,9 +1,24 @@
+export let item_list = [
+    {
+        param:'yaku',
+        func:function(){
+            console.log(this.param)
+         }
+    }
+]
+
 export const DETAILS_ITEM = [
     {
        param:'item',
+       obj:{
+       0: ['yaku', '薬草'],
+       1: ['sora', 'そら豆'],
+       2: ['kyuu', 'きゅうり'],
+       3: ['kagi', 'カギ']
+    },
        func:function(){
         details_display_set =this.param;
-        details_output = 'Hello'
+        details_output = this.obj
         }
     },
     {
