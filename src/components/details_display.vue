@@ -112,10 +112,12 @@ export default {
             //現在表示により処理を分岐
             let loopitems = {
                 'menu':menu_item.DETAILS_ITEM,
-                'item':menu_item.item_list};
+                'item':menu_item.item_list
+                };
                 loopitems[menu_item.details_display_set].forEach(function (val, key) {
-                    console.log(val)
-                    if (this_.items[this_.now_area][0] == val.param) val.func();
+                    if (this_.details_output[this_.now_area][0] == val.param){
+                         val.func();
+                    }
                 });
 
 

@@ -32,7 +32,7 @@ export default {
             }else{
                 bgmjs.stop_sound(this.bgm_label);
             }
-        }
+        },
     }
 }
 

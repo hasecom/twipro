@@ -147,6 +147,7 @@ export default {
 
                 }
             }
+console.log(event_content);
 
             if (event_content != undefined) this.$refs.message_ref.throw_event(event_content);
 
