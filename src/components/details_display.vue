@@ -107,6 +107,10 @@ export default {
             return 'select';
         },
         decision_click() {
+            if(mainjs.read_items_message_display_() != false){
+                this.$emit('details_item');
+                return false;
+            }
             let this_ = this;
     
             //現在表示により処理を分岐
@@ -114,15 +118,20 @@ export default {
                 'menu':menu_item.DETAILS_ITEM,
                 'item':menu_item.item_list
                 };
+                
                 loopitems[menu_item.details_display_set].forEach(function (val, key) {
-                    if (this_.details_output[this_.now_area][0] == val.param){
-                         val.func();
+                   if (this_.details_output[this_.now_area][0] == val.param){
+                      if(menu_item.details_display_set == 'item')
+                      this_.$emit('details_item');
+                        val.func();
+                      
                     }
                 });
 
 
             this.details_display_chk();
             this.details_output = menu_item.details_output;
+            this.details_output = menu_item.details_output == '' ? this.items : menu_item.details_output;
         },
         details_display_chk() {
             this.display_details = menu_item.details_display_set;

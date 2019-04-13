@@ -1,13 +1,12 @@
-import * as Message from "../../components/message.vue";
 import * as stagejs from './stage.js';
 
 
 export let item_list = [
     {
-        param: 'yaku',
+        param: 'yakusou',
         func: function () {
-          //  stagejs
-          //  Message.default.methods.throw_event()
+        let aaaaa = stagejs.EVENT_['yakusou']
+         //   return 'HEEL';
         }
     },
     {
@@ -34,7 +33,7 @@ export const DETAILS_ITEM = [
     {
         param: 'item',
         obj: {
-            0: ['yaku', '薬草'],
+            0: ['yakusou', '薬草'],
             1: ['sora', 'そら豆'],
             2: ['kyuu', 'きゅうり'],
             3: ['kagi', 'カギ']

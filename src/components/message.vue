@@ -7,6 +7,7 @@
 <script>
 import * as mainjs from "../assets/js/index.js";
 import * as bgmjs from "../assets/js/bgm.js";
+import { log } from 'util';
 export default {
     name: 'message',
     data() {
@@ -28,6 +29,7 @@ export default {
                 this.Close_or_NextPage();
                 return false;
             }
+
             //bgm
            // bgmjs.Bgm_sound(this.event_content[2]);
             // '/'で分けられた項目をページ単位にして配列に格納
@@ -35,9 +37,11 @@ export default {
             //ページ数
             this.board_page = this.page_content.length;
             //message_board表示非表示
+     
             mainjs.read_message_display_toggle(true);
             this.display_message_board = true;
             this.output_content();
+  
         },
         output_content() {
             this.who = this.event_content[0];
@@ -66,11 +70,13 @@ export default {
             let this_ = this;
             let message_board_color = 1;
             bgmjs.Bgm_sound(this.event_content[3]);
+
             var countup = function () {
                 count++;
                 
             }
             var id = setInterval(function () {
+
                 this_.animation_serif = this_.serif.slice(0,count);
                 if (count >= this_.serif.split('').length) {
                     clearInterval(id); //idをclearIntervalで指定している
@@ -82,7 +88,7 @@ export default {
                     document.querySelector('#message_board').style.setProperty('--message_background', 'black'); // 書き換え
                     message_board_color = 0;
                     }else{
-                        document.querySelector('#message_board').style.setProperty('--message_background', 'white'); // 書き換え
+                    document.querySelector('#message_board').style.setProperty('--message_background', 'white'); // 書き換え
                     message_board_color = 1;
                     }
                 }

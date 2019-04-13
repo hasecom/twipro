@@ -75,8 +75,10 @@ export const STAGE_MOVE = {
 }
 //イベント name,serif,type->bgm,
 export const EVENT_ = {
-    'man_front':['男','aaaaaa/bb..cc...!?','talk','serif']
+    'man_front':['男','aaaaaa/bb..cc...!?','talk','serif'],
+    'yakusou':['アイテム','薬草を使った。','talk','serif']
 }
+
 
 let select = { 
     'STAGE_ground': STAGE_ground ,

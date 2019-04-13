@@ -11,9 +11,10 @@
                 </div>
             </div>
             <Message ref='message_ref' />
+            <Event ref='connect_item_controller' />
         </div>
         <Control v-on:stage_reload="reload_call" v-on:btn_click="front_chk" />
-        <DetailsDisplay ref='details_ref' />
+        <DetailsDisplay ref='details_ref' v-on:details_item="connect_item_controller" />
         <Bgm />
     </div>
 </div>
@@ -27,6 +28,7 @@ import Chara from "./character.vue";
 import Control from "./controller.vue";
 import DetailsDisplay from "./details_display.vue";
 import Message from "./message.vue";
+import Event from "./event.vue";
 import Bgm from "./bgm.vue";
 import {
     log
@@ -49,7 +51,8 @@ export default {
         Control,
         Message,
         Bgm,
-        DetailsDisplay
+        DetailsDisplay,
+        Event
     },
     mounted() {
         let mounted_stage = 'STAGE_ground';
@@ -147,10 +150,10 @@ export default {
 
                 }
             }
-console.log(event_content);
-
             if (event_content != undefined) this.$refs.message_ref.throw_event(event_content);
-
+        },
+        connect_item_controller(){
+             this.$refs.connect_item_controller.event_start();
         }
     }
 };
