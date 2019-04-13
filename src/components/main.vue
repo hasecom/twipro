@@ -14,7 +14,7 @@
             <Event ref='connect_item_controller' />
         </div>
         <Control v-on:stage_reload="reload_call" v-on:btn_click="front_chk" />
-        <DetailsDisplay ref='details_ref' v-on:details_item="connect_item_controller" />
+        <DetailsDisplay ref='details_ref' v-on:details_item="connect_item_controller" v-on:details_item_close="conntent_item_close" />
         <Bgm />
     </div>
 </div>
@@ -154,6 +154,9 @@ export default {
         },
         connect_item_controller(){
              this.$refs.connect_item_controller.event_start();
+        },
+        conntent_item_close(){
+            this.$refs.connect_item_controller.event_close();
         }
     }
 };

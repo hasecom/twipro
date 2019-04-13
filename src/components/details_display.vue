@@ -57,9 +57,13 @@ export default {
             } else {
                 //close
                 this.isDetails = false;
+                 //itemメッセージを消す
+                this.$emit('details_item_close');
                 mainjs.read_details_display_toggle(false);
+                
                 //クローズ時に開くメニューを初期化
                 this.display_details = menu_item.details_display_initialize();
+                this.details_output = this.items;
             }
 
         },
@@ -118,15 +122,18 @@ export default {
                 'menu':menu_item.DETAILS_ITEM,
                 'item':menu_item.item_list
                 };
+
+                
                 
                 loopitems[menu_item.details_display_set].forEach(function (val, key) {
                    if (this_.details_output[this_.now_area][0] == val.param){
-                      if(menu_item.details_display_set == 'item')
-                      this_.$emit('details_item');
-                        val.func();
-                      
+                      if(menu_item.details_display_set == 'item')this_.$emit('details_item');
+                        console.log(val.param);
+                        
+                        val.func();  
                     }
                 });
+                  
 
 
             this.details_display_chk();

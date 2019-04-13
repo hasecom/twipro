@@ -5,8 +5,6 @@ export let item_list = [
     {
         param: 'yakusou',
         func: function () {
-        let aaaaa = stagejs.EVENT_['yakusou']
-         //   return 'HEEL';
         }
     },
     {
