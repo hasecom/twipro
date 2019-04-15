@@ -152,8 +152,8 @@ export default {
             }
             if (event_content != undefined) this.$refs.message_ref.throw_event(event_content);
         },
-        connect_item_controller(){
-             this.$refs.connect_item_controller.event_start();
+        connect_item_controller(ev){
+             this.$refs.connect_item_controller.event_start(ev);
         },
         conntent_item_close(){
             this.$refs.connect_item_controller.event_close();
@@ -204,6 +204,10 @@ export default {
 
 .water1 {
     background: url("../assets/img/field/water1.png") no-repeat center center;
+    object-fit: cover;
+}
+.kusa1 {
+    background: url("../assets/img/field/kusa1.png") no-repeat center center;
     object-fit: cover;
 }
 

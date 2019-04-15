@@ -19,7 +19,6 @@
     </div>
 </div>
 </template>
-
 <script>
 import * as mainjs from "../assets/js/index.js";
 import * as menu_item from "../assets/js/menu_item.js";
@@ -53,19 +52,16 @@ export default {
                 //open
                 this.isDetails = true;
                 mainjs.read_details_display_toggle(true);
-
             } else {
                 //close
                 this.isDetails = false;
                  //itemメッセージを消す
                 this.$emit('details_item_close');
                 mainjs.read_details_display_toggle(false);
-                
                 //クローズ時に開くメニューを初期化
                 this.display_details = menu_item.details_display_initialize();
                 this.details_output = this.items;
             }
-
         },
         details_controller(direction) {
             //移動域
@@ -92,7 +88,6 @@ export default {
                         if (_this.now_area >= Object.keys(_this.items).length - 1) return 0;
                         return 1;
                     }
-
                 },
                 left: {
                     param: 'left',
@@ -100,10 +95,8 @@ export default {
                         if (_this.now_area <= 0) return 0;
                         return -1;
                     }
-
                 }
             };
-
             this.now_area = this.now_area + direction_processing[direction].func(move_area);
         },
         make_class(num) { //ロード時のselectクラス付与
@@ -127,9 +120,7 @@ export default {
                 
                 loopitems[menu_item.details_display_set].forEach(function (val, key) {
                    if (this_.details_output[this_.now_area][0] == val.param){
-                      if(menu_item.details_display_set == 'item')this_.$emit('details_item');
-                        console.log(val.param);
-                        
+                      if(menu_item.details_display_set == 'item')this_.$emit('details_item',val.message);
                         val.func();  
                     }
                 });

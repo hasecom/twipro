@@ -14,18 +14,16 @@ export default {
         }
     },
     methods: {
-        event_start() {
-            this.event = 'i';
+        event_start(ev) {
+            this.event = ev;
             this.event_display = mainjs.read_items_message_display_() == true ? false : true;
             mainjs.read_items_message_display_toggle(this.event_display);
         },
-        event_close(){
+        event_close() {
             this.event_display = false;
             mainjs.read_items_message_display_toggle(false);
-            
         }
     }
-
 }
 </script>
 

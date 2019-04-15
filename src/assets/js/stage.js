@@ -14,7 +14,7 @@ let STAGE_ground = [
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
     1, 0, 1000, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+    1, 1, 1, 1, 1, 103, 1, 1, 1, 1, 1, 1, 1
 ];
 let STAGE_ground2 = [
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1000, 2,
@@ -29,6 +29,22 @@ let STAGE_ground2 = [
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2,
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2,
     1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2
+];
+
+let STAGE_ground3 = [
+    1, 1, 1, 1, 1, 104, 1, 1, 1, 1, 1, 1000, 2,
+    1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2,//0~11
+    1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2,
+    1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2,
+    1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2,
+    1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2,
+    1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2,
+    1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2,
+    1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2,
+    1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2,
+    1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2,
+    1, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 2,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2
 ];
 //display_stage(見える範囲 12*12)
@@ -56,9 +72,12 @@ export const STAGE_DISPLAY = {
     0: 'field1',
     1: 'yama1',
     2: 'water1',
+    4:'kusa1',
     undefined:'blackout',
     101:'STAGE_ground',
     102:'STAGE_ground2',
+    103:'STAGE_ground3',
+    104:'STAGE_ground4',
     1000:'man_front'
 }
 //障害物
@@ -66,23 +85,26 @@ export const OBBSTACLE = {
     0: 'yama1',
     1:'blackout',
     2: 'water1',
-    3:'man_front'
+    3:'man_front',
 }
 //ステージ移動 ステージ名,col,row,bgm
 export const STAGE_MOVE = {
     0: ['STAGE_ground',6,1,'enter01'],
     1: ['STAGE_ground2',-4,1,'enter01'],
+    2: ['STAGE_ground3',0,-5,'enter01'],
+    3: ['STAGE_ground4',0,5,'enter01'],
 }
 //イベント name,serif,type->bgm,
 export const EVENT_ = {
     'man_front':['男','aaaaaa/bb..cc...!?','talk','serif'],
-    'yakusou':['アイテム','薬草を使った。','talk','serif']
 }
 
 
 let select = { 
-    'STAGE_ground': STAGE_ground ,
+    'STAGE_ground': STAGE_ground,
     'STAGE_ground2': STAGE_ground2,
+    'STAGE_ground3': STAGE_ground3,
+    'STAGE_ground4': STAGE_ground,
 };
 
 export function reset_stage(){
