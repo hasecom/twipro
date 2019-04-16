@@ -80,7 +80,7 @@ export const STAGE_DISPLAY = {
     104:'STAGE_ground4',
     1000:'man_front'
 }
-//障害物
+//障害物oo
 export const OBBSTACLE = {
     0: 'yama1',
     1:'blackout',
